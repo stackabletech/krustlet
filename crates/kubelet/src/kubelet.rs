@@ -195,7 +195,8 @@ async fn start_signal_handler(
     loop {
         if signal.load(Ordering::Relaxed) {
             info!("Signal caught.");
-            node::drain(&client, &node_name).await?;
+            info!("Skipping draining of pods...");
+            //node::drain(&client, &node_name).await?;
             break Ok(());
         }
         tokio::time::sleep(duration).await;
