@@ -375,7 +375,7 @@ async fn run_object_task<O: Operator>(
         object_state.async_drop(&mut state_writer).await;
     }
 
-    match operator.deregistration_hook(manifest).await {
+    match operator.deregistration_hook(manifest.clone()).await {
         Ok(()) => (),
         Err(e) => warn!(
             "Operator deregistration hook for object {} in namespace {:?} failed: {:?}",
